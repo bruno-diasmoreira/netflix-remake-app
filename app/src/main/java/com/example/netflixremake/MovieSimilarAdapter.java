@@ -51,7 +51,7 @@ public class MovieSimilarAdapter extends RecyclerView.Adapter<MovieSimilarAdapte
 
         public void bind(Movie item) {
             ImageView image = itemView.findViewById(R.id.img_movie);
-            image.setImageResource(item.getIdUrl());
+            //image.setImageResource(item.getIdUrl());
         }
     }
 }

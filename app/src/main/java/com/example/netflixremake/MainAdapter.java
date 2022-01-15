@@ -51,6 +51,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         return categories.size();
     }
 
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+
+
     class ViewHolder extends RecyclerView.ViewHolder{
 
         public ViewHolder(@NonNull View itemView) {

@@ -8,13 +8,13 @@ import android.os.Bundle;
 
 import com.example.netflixremake.model.Category;
 import com.example.netflixremake.model.Movie;
+import com.example.netflixremake.util.CategoryTask;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CategoryTask.CategoryLoader {
 
-    private RecyclerView rvMain;
     private MainAdapter mainAdapter;
 
     @Override
@@ -22,39 +22,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rvMain = findViewById(R.id.rv_main);
+        RecyclerView rvMain = findViewById(R.id.rv_main);
 
         rvMain.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
 
         List<Category> categories = new ArrayList<>();
 
-        List<String> array = new ArrayList<>();
-        array.add("Aventura");
-        array.add("Ação");
-        array.add("Drama");
-        array.add("Terror");
-        array.add("Desenho");
-
-        for(int i = 0; i < array.size(); i++) {
-
-            Category category = new Category();
-            category.setName(array.get(i));
-
-
-            List<Movie> movies = new ArrayList<>();
-
-            for(int j = 0; j < 25; j++){
-                Movie m = new Movie();
-                m.setIdUrl(R.drawable.placeholder_bg);
-                movies.add(m);
-            }
-
-            category.setMovies(movies);
-            categories.add(category);
-        }
-
         mainAdapter = new MainAdapter(this,categories);
         rvMain.setAdapter(mainAdapter);
 
+
+       CategoryTask categoryTask =  new CategoryTask(this);
+       categoryTask.setCategoryLoader(this);
+       categoryTask.execute("https://tiagoaguiar.co/api/netflix/home");
+
+    }
+
+    @Override
+    public void onResult(List<Category> categories) {
+        mainAdapter.setCategories(categories);
+        mainAdapter.notifyDataSetChanged();
     }
 }

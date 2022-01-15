@@ -2,13 +2,13 @@ package com.example.netflixremake.model;
 
 public class Movie {
 
-    private int idUrl;
+    private String idUrl;
 
-    public int getIdUrl() {
+    public String getIdUrl() {
         return idUrl;
     }
 
-    public void setIdUrl(int idUrl) {
+    public void setIdUrl(String idUrl) {
         this.idUrl = idUrl;
     }
 }

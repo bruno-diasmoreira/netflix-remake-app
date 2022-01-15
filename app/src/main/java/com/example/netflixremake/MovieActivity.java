@@ -69,7 +69,7 @@ public class MovieActivity extends AppCompatActivity {
 
         for(int j = 0; j < 30; j++){
             Movie m = new Movie();
-            m.setIdUrl(R.drawable.placeholder_bg);
+            //m.setIdUrl(R.drawable.placeholder_bg);
             movies.add(m);
         }
 
