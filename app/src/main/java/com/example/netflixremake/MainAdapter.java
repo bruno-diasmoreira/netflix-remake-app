@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.netflixremake.model.Category;
-import com.example.netflixremake.model.Movie;
 
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     private List<Category> categories;
 
     TextView categoryTitle;
-    RecyclerView rvCategoryName;
+    RecyclerView rvCategoryMovie;
 
     public MainAdapter(Context context, List<Category> categories) {
         this.context = context;
@@ -40,8 +38,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
         categoryTitle.setText(categories.get(position).getName());
 
-        rvCategoryName.setLayoutManager(new LinearLayoutManager(context,RecyclerView.HORIZONTAL,false));
-        rvCategoryName.setAdapter(new MovieAdapter(context,categories.get(position).getMovies()));
+        rvCategoryMovie.setLayoutManager(new LinearLayoutManager(context,RecyclerView.HORIZONTAL,false));
+        rvCategoryMovie.setAdapter(new MovieAdapter(context,categories.get(position).getMovies()));
 
 
     }
@@ -63,7 +61,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryTitle = itemView.findViewById(R.id.textView_title);
-            rvCategoryName = itemView.findViewById(R.id.rv_category_movie);
+            rvCategoryMovie = itemView.findViewById(R.id.rv_category_movie);
 
         }
     }
