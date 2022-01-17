@@ -1,4 +1,4 @@
-package com.example.netflixremake;
+package com.example.netflixremake.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,14 +9,20 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.netflixremake.R;
 import com.example.netflixremake.model.Movie;
+import com.example.netflixremake.util.ImageDownloaderTask;
 
 import java.util.List;
 
 public class MovieSimilarAdapter extends RecyclerView.Adapter<MovieSimilarAdapter.ViewHolder>{
 
-    private Context context;
+    private final Context context;
     private List<Movie> movies;
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
 
     public MovieSimilarAdapter(Context context, List<Movie> movies) {
         this.context = context;
@@ -51,7 +57,8 @@ public class MovieSimilarAdapter extends RecyclerView.Adapter<MovieSimilarAdapte
 
         public void bind(Movie item) {
             ImageView image = itemView.findViewById(R.id.img_movie_similar);
-            //image.setImageResource(item.getIdUrl());
+            new ImageDownloaderTask(image).execute(item.getIdUrl());
+
         }
     }
 }

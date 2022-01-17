@@ -126,8 +126,11 @@ public class CategoryTask extends AsyncTask<String, Void, List<Category>> {
 
                 String idUrl = movie.getString("cover_url");
 
+                int id = movie.getInt("id");
+
                 Movie movieObj = new Movie();
                 movieObj.setIdUrl(idUrl);
+                movieObj.setId(id);
                 movies.add(movieObj);
             }
 

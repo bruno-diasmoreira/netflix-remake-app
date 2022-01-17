@@ -1,4 +1,4 @@
-package com.example.netflixremake;
+package com.example.netflixremake.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,13 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.netflixremake.R;
 import com.example.netflixremake.model.Category;
 
 import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
-    private Context context;
+    private final Context context;
     private List<Category> categories;
 
     TextView categoryTitle;

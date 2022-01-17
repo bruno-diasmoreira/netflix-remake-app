@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.example.netflixremake.adapter.MainAdapter;
 import com.example.netflixremake.model.Category;
-import com.example.netflixremake.model.Movie;
 import com.example.netflixremake.util.CategoryTask;
 
 import java.util.ArrayList;
