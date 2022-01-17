@@ -74,8 +74,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         public void bind(Movie item) {
             ImageView imageView = itemView.findViewById(R.id.img_movie);
 
-            String url = "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/ec0a8037523531.5743724ddec89.jpg";
-
             new ImageDownloaderTask(imageView).execute(item.getIdUrl());
         }
     }

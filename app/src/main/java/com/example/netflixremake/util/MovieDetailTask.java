@@ -92,8 +92,8 @@ public class MovieDetailTask extends AsyncTask<String, Void, List<MovieDetail>> 
         super.onPreExecute();
 
         Context context = this.contextWeakReference.get();
-        if(context != null)
-            dialog = ProgressDialog.show(context,"Carregando","",true);
+        if (context != null)
+            dialog = ProgressDialog.show(context, "Carregando", "", true);
     }
 
     @Override
@@ -140,9 +140,9 @@ public class MovieDetailTask extends AsyncTask<String, Void, List<MovieDetail>> 
 
         List<Movie> moviesSimilar = new ArrayList<>();
 
-        JSONArray similarArray =  jsonObject.getJSONArray("movie");
+        JSONArray similarArray = jsonObject.getJSONArray("movie");
 
-        for(int i = 0; i < similarArray.length(); i++){
+        for (int i = 0; i < similarArray.length(); i++) {
 
             JSONObject similarObj = similarArray.getJSONObject(i);
 
@@ -154,15 +154,11 @@ public class MovieDetailTask extends AsyncTask<String, Void, List<MovieDetail>> 
             movie.setIdUrl(coverUrl);
 
 
-
             moviesSimilar.add(movie);
         }
 
 
-
-
-
-        MovieDetail movieDetail = new MovieDetail(m,moviesSimilar);
+        MovieDetail movieDetail = new MovieDetail(m, moviesSimilar);
 
         movieDetailList.add(movieDetail);
 

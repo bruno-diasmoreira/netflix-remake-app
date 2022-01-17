@@ -33,7 +33,7 @@ public class CategoryTask extends AsyncTask<String, Void, List<Category>> {
     private CategoryLoader categoryLoader;
 
 
-    public void setCategoryLoader(CategoryLoader categoryLoader){
+    public void setCategoryLoader(CategoryLoader categoryLoader) {
         this.categoryLoader = categoryLoader;
     }
 
@@ -46,8 +46,8 @@ public class CategoryTask extends AsyncTask<String, Void, List<Category>> {
     protected void onPreExecute() {
         super.onPreExecute();
         Context context = this.context.get();
-        if(context != null)
-            dialog = ProgressDialog.show(context,"Carregando","",true);
+        if (context != null)
+            dialog = ProgressDialog.show(context, "Carregando", "", true);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class CategoryTask extends AsyncTask<String, Void, List<Category>> {
 
             int responseCode = urlConnection.getResponseCode();
 
-            if(responseCode > 400){
+            if (responseCode > 400) {
                 throw new IOException("Error na comunicação do servidor");
             }
 
@@ -73,7 +73,7 @@ public class CategoryTask extends AsyncTask<String, Void, List<Category>> {
 
             BufferedInputStream in = new BufferedInputStream(inputStream);
 
-            String jsonAsString  = toString(in);
+            String jsonAsString = toString(in);
 
             List<Category> categories = getCategories(new JSONObject(jsonAsString));
 
@@ -99,7 +99,7 @@ public class CategoryTask extends AsyncTask<String, Void, List<Category>> {
         super.onPostExecute(categories);
         dialog.dismiss();
 
-        if(categoryLoader != null){
+        if (categoryLoader != null) {
             categoryLoader.onResult(categories);
         }
 
@@ -110,9 +110,9 @@ public class CategoryTask extends AsyncTask<String, Void, List<Category>> {
 
         List<Category> categories = new ArrayList<>();
 
-        JSONArray categoryArray  = jsonObject.getJSONArray("category");
+        JSONArray categoryArray = jsonObject.getJSONArray("category");
 
-        for(int i = 0; i < categoryArray.length(); i++){
+        for (int i = 0; i < categoryArray.length(); i++) {
             JSONObject category = categoryArray.getJSONObject(i);
 
             String title = category.getString("title");
@@ -120,7 +120,7 @@ public class CategoryTask extends AsyncTask<String, Void, List<Category>> {
             List<Movie> movies = new ArrayList<>();
             JSONArray movieArray = category.getJSONArray("movie");
 
-            for(int j = 0; j < movieArray.length(); j++) {
+            for (int j = 0; j < movieArray.length(); j++) {
 
                 JSONObject movie = movieArray.getJSONObject(j);
 
@@ -146,15 +146,15 @@ public class CategoryTask extends AsyncTask<String, Void, List<Category>> {
     }
 
 
-    private String toString(InputStream is) throws IOException{
+    private String toString(InputStream is) throws IOException {
 
         byte[] bytes = new byte[1024];
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         int lidos;
 
-        while((lidos = is.read(bytes)) > 0){
-            baos.write(bytes,0,lidos);
+        while ((lidos = is.read(bytes)) > 0) {
+            baos.write(bytes, 0, lidos);
         }
 
         return new String(baos.toByteArray());
